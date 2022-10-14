@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-    [RequireComponent(typeof(AeroplaneController))]
+    [RequireComponent(typeof (AeroplaneController))]
     public class AeroplaneUserControl4Axis : MonoBehaviour
     {
         // these max angles are only used on mobile, due to the way pitch and roll input are handled
@@ -26,11 +28,11 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
         private void FixedUpdate()
         {
             // Read input for the pitch, yaw, roll and throttle of the aeroplane.
-            float roll = Input.GetAxis("Mouse X");
-            float pitch = Input.GetAxis("Mouse Y");
-            m_AirBrakes = Input.GetButton("Fire1");
-            m_Yaw = Input.GetAxis("Horizontal");
-            m_Throttle = Input.GetAxis("Vertical");
+            float roll = CrossPlatformInputManager.GetAxis("Mouse X");
+            float pitch = CrossPlatformInputManager.GetAxis("Mouse Y");
+            m_AirBrakes = CrossPlatformInputManager.GetButton("Fire1");
+            m_Yaw = CrossPlatformInputManager.GetAxis("Horizontal");
+            m_Throttle = CrossPlatformInputManager.GetAxis("Vertical");
 #if MOBILE_INPUT
         AdjustInputForMobileControls(ref roll, ref pitch, ref m_Throttle);
 #endif
@@ -49,8 +51,8 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
             // and the roll input is calculated to achieve that.
             // whereas on non-mobile, the input directly controls the roll of the aeroplane.
 
-            float intendedRollAngle = roll * maxRollAngle * Mathf.Deg2Rad;
-            float intendedPitchAngle = pitch * maxPitchAngle * Mathf.Deg2Rad;
+            float intendedRollAngle = roll*maxRollAngle*Mathf.Deg2Rad;
+            float intendedPitchAngle = pitch*maxPitchAngle*Mathf.Deg2Rad;
             roll = Mathf.Clamp((intendedRollAngle - m_Aeroplane.RollAngle), -1, 1);
             pitch = Mathf.Clamp((intendedPitchAngle - m_Aeroplane.PitchAngle), -1, 1);
         }
