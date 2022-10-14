@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 903183192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a6a832b3914e643949ba6afd19f526, type: 3}
+  m_Script: {fileID: 11500000, guid: 590830ffd20d2c4488bb2d887bb5b740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1007577526
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f65ed8919d3f3724f96af2bb31f7dee4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27dacacd5890ae2418160e5b96a692dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -500,7 +500,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1303994583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 467caa71e28786348bd5b05e77e6bb0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b904894415a6cc4a8f6a5dd48ac75fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GameSceneLoader: {fileID: 903183194}
