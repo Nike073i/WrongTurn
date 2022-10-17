@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class PreloadSceneManager : MonoBehaviour
+public class PreloadScript : MonoBehaviour
 {
     private GameManager _gameManager;
 
