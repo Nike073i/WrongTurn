@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public float ElapsedTime { get; private set; }
     public GameState CurrentState { get; private set; } = GameState.Pregame;
     public Action<GameState, GameState> OnGameStateUpdated;
-    public int CurrentLevel { get; private set; }
-    public Action<int> OnGameLevelChanged;
+    public Scene CurrentScene { get; private set; }
+    public Action<Scene> OnGameLevelChanged;
 
     [Inject]
     private void Construct(SceneLoader sceneLoader, PauseService pauseService)
@@ -22,17 +22,17 @@ public class GameManager : MonoBehaviour
 
     public void LoadCityLevel()
     {
-        UpdateGameLevel(SceneLoader.LastLevelIndex);
+        UpdateGameLevel(Scene.CityLevel);
     }
 
     public void LoadSandLevel()
     {
-        UpdateGameLevel(SceneLoader.LastLevelIndex);
+        UpdateGameLevel(Scene.SandLevel);
     }
 
     public void LoadMainMenu()
     {
-        UpdateGameLevel(SceneLoader.MainMenuSceneIndex);
+        UpdateGameLevel(Scene.MainMenu);
     }
 
     public void StartGame()
@@ -68,11 +68,6 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.Running);
     }
 
-    public void MainMenu()
-    {
-        _sceneLoader.LoadMainMenu();
-    }
-
     public void UpdateGameState(GameState newState)
     {
         var prevState = CurrentState;
@@ -95,12 +90,12 @@ public class GameManager : MonoBehaviour
         OnGameStateUpdated?.Invoke(prevState, newState);
     }
 
-    public void UpdateGameLevel(int levelIndex)
+    public void UpdateGameLevel(Scene scene)
     {
-        _sceneLoader.LoadScene(levelIndex);
-        CurrentLevel = levelIndex;
+        _sceneLoader.LoadScene(scene);
+        CurrentScene = scene;
         UpdateGameState(GameState.Pregame);
-        OnGameLevelChanged?.Invoke(levelIndex);
+        OnGameLevelChanged?.Invoke(scene);
     }
 
     private void HandleRunningState()

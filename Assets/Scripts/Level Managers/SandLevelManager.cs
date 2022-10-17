@@ -89,7 +89,7 @@ public class SandLevelManager : MonoBehaviour
         }
         if (GUI.Button(buttonMenu, messageMenu))
         {
-            _gameManager.MainMenu();
+            _gameManager.LoadMainMenu();
             return;
         }
     }

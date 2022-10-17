@@ -89,7 +89,7 @@ public class CityLevelManager : MonoBehaviour
         }
         if (GUI.Button(buttonMenu, _messageMenu))
         {
-            _gameManager.MainMenu();
+            _gameManager.LoadMainMenu();
             return;
         }
     }
