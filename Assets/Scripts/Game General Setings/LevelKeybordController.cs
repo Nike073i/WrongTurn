@@ -15,15 +15,15 @@ public class LevelKeybordController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_gameManager.Running)
+            if (_gameManager.CurrentState == GameState.Running)
             {
-                if (!_gameManager.Paused)
+                if (_gameManager.CurrentState != GameState.Paused)
                 {
                     Cursor.visible = true;
                     _gameManager.PauseGame();
                     return;
                 }
-                if (_gameManager.Paused)
+                else
                 {
                     Cursor.visible = false;
                     _gameManager.ContinueGame();

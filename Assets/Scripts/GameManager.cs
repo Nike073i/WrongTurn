@@ -6,9 +6,7 @@ public class GameManager : MonoBehaviour
     private SceneLoader _sceneLoader;
 
     public float ElapsedTime { get; private set; }
-    public bool Running { get; private set; } = false;
-    public bool Paused { get; private set; } = false;
-    public bool Finished { get; private set; } = false;
+    public GameState CurrentState { get; private set; } = GameState.Pregame;
 
     [Inject]
     private void Construct(SceneLoader sceneLoader)
@@ -24,14 +22,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         ElapsedTime = 0;
-        Running = true;
-        Finished = false;
+        UpdateGameState(GameState.Running);
     }
 
     public void FinishGame()
     {
-        Running = false;
-        Finished = true;
+        UpdateGameState(GameState.Finished);
     }
 
     public void ExitGame()
@@ -41,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Running && !Paused)
+        if (CurrentState == GameState.Running)
         {
             ElapsedTime += Time.deltaTime;
         }
@@ -49,17 +45,22 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        Paused = true;
+        UpdateGameState(GameState.Paused);
     }
 
     public void ContinueGame()
     {
-        Paused = false;
+        UpdateGameState(GameState.Running);
     }
 
     public void MainMenu()
     {
         _sceneLoader.LoadMainMenu();
+    }
+
+    public void UpdateGameState(GameState newState)
+    {
+        CurrentState = newState;
     }
 
 }

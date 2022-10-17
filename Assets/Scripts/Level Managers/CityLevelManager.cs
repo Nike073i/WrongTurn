@@ -21,25 +21,28 @@ public class CityLevelManager : MonoBehaviour
 
     private void OnGUI()
     {
-        if (_gameManager.Finished)
+        switch (_gameManager.CurrentState)
         {
-            FinishMenuRender();
-            return;
-        }
-        if (!_gameManager.Running)
-        {
-            StartMenuRender();
-            return;
-        }
-        if (_gameManager.Paused)
-        {
-            PauseMenuRender();
-            return;
-        }
-        if (_gameManager.Running)
-        {
-            GameProcessMenuRender();
-            return;
+            case (GameState.Pregame):
+                {
+                    StartMenuRender();
+                    break;
+                }
+            case (GameState.Running):
+                {
+                    GameProcessMenuRender();
+                    break;
+                }
+            case (GameState.Paused):
+                {
+                    PauseMenuRender();
+                    break;
+                }
+            case (GameState.Finished):
+                {
+                    FinishMenuRender();
+                    break;
+                }
         }
     }
 
