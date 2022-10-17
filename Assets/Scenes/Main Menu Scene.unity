@@ -680,20 +680,20 @@ MonoBehaviour:
   MenuItems:
   - SpriteGeneral: {fileID: 4196839423909144710, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: -8519022737440003418, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonObject: {fileID: 1427196844}
-    Command: StartGame
+    ButtonImage: {fileID: 1427196846}
+    CommandName: StartGame
   - SpriteGeneral: {fileID: 3862412840237998905, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: 5681577502782440470, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonObject: {fileID: 317232960}
-    Command: 
+    ButtonImage: {fileID: 317232962}
+    CommandName: 
   - SpriteGeneral: {fileID: 2470984068398848082, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: -4722469139264870737, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonObject: {fileID: 1455124023}
-    Command: 
+    ButtonImage: {fileID: 1455124025}
+    CommandName: 
   - SpriteGeneral: {fileID: -2978173362232131241, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: 978498083462473504, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonObject: {fileID: 1769528608}
-    Command: ExitGame
+    ButtonImage: {fileID: 1769528610}
+    CommandName: ExitGame
 --- !u!4 &1398248843
 Transform:
   m_ObjectHideFlags: 0

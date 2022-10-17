@@ -7,19 +7,16 @@ public class MenuItem
 {
     public Sprite SpriteGeneral;
     public Sprite SpriteHover;
-    public GameObject ButtonObject;
-    public string Command;
-    [System.NonSerialized]
     public Image ButtonImage;
+    public string CommandName;
 }
 
 public class Menu : MonoBehaviour
 {
-    [Header("Set in Inspector")]
     public MenuItem[] MenuItems;
 
-    private GameManager _gameManager;
     private int _selectedItemIndex = -1;
+    private GameManager _gameManager;
 
     [Inject]
     private void Construct(GameManager gameManager)
@@ -29,11 +26,6 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = true;
-        foreach (MenuItem menuItem in MenuItems)
-        {
-            menuItem.ButtonImage = menuItem.ButtonObject.GetComponent<Image>();
-        }
         SelectMenuItem(0);
     }
 
@@ -52,7 +44,7 @@ public class Menu : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Invoke(MenuItems[_selectedItemIndex].Command, 0f);
+            Invoke(MenuItems[_selectedItemIndex].CommandName, 0f);
             return;
         }
     }
