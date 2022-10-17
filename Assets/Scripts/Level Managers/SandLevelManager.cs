@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class SandLevelManager : MonoBehaviour
 {
@@ -10,26 +11,32 @@ public class SandLevelManager : MonoBehaviour
     private readonly int buttonHeight = 30;
     private readonly int buttonMargin = 5;
 
-    public GameManager GameManager;
+    private GameManager _gameManager;
+
+    [Inject]
+    private void Construct(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
 
     private void OnGUI()
     {
-        if (GameManager.Finished)
+        if (_gameManager.Finished)
         {
             FinishMenuRender();
             return;
         }
-        if (!GameManager.Running)
+        if (!_gameManager.Running)
         {
             StartMenuRender();
             return;
         }
-        if (GameManager.Paused)
+        if (_gameManager.Paused)
         {
             PauseMenuRender();
             return;
         }
-        if (GameManager.Running)
+        if (_gameManager.Running)
         {
             GameProcessMenuRender();
             return;
@@ -42,14 +49,14 @@ public class SandLevelManager : MonoBehaviour
 
         if (GUI.Button(button, messageBegin) || Input.GetKeyDown(KeyCode.Return))
         {
-            GameManager.StartGame();
+            _gameManager.StartGame();
         }
     }
 
     private void FinishMenuRender()
     {
         ;
-        int time = (int)GameManager.ElapsedTime;
+        int time = (int)_gameManager.ElapsedTime;
         Rect button = new Rect(Screen.width / 2 - 120, Screen.height / 2, 240, 30);
         GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "�������� �����:");
         GUI.Label(new Rect(Screen.width / 2 - 10, Screen.height - 100, 20, 30), time.ToString());
@@ -61,7 +68,7 @@ public class SandLevelManager : MonoBehaviour
 
     private void GameProcessMenuRender()
     {
-        int time = (int)GameManager.ElapsedTime;
+        int time = (int)_gameManager.ElapsedTime;
         GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "���� �����");
         GUI.Label(new Rect(Screen.width / 2 - 10, Screen.height - 100, 20, 30), time.ToString());
     }
@@ -74,12 +81,12 @@ public class SandLevelManager : MonoBehaviour
 
         if (GUI.Button(buttonCont, messageCont))
         {
-            GameManager.ContinueGame();
+            _gameManager.ContinueGame();
             return;
         }
         if (GUI.Button(buttonMenu, messageMenu))
         {
-            GameManager.MainMenu();
+            _gameManager.MainMenu();
             return;
         }
     }

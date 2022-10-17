@@ -1,12 +1,18 @@
 using UnityEngine;
+using Zenject;
 
 public class FinishZone : MonoBehaviour
 {
-    [Header("Set in Inspector")]
-    public GameManager GameManager;
+    private GameManager _gameManager;
+
+    [Inject]
+    private void Construct(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.FinishGame();
+        _gameManager.FinishGame();
     }
 }
