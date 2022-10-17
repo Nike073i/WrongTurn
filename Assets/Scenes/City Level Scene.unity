@@ -1234,7 +1234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758177024}
   m_Layer: 0
-  m_Name: StartPont
+  m_Name: StartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2505,8 +2505,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669733786}
-  m_LocalRotation: {x: 0.015816571, y: 0.9684521, z: 0.24039638, w: -0.063718066}
-  m_LocalPosition: {x: 3.266185, y: 1.0979633, z: 98.85811}
+  m_LocalRotation: {x: 0.004315694, y: 0.9952159, z: 0.08260234, w: -0.05199656}
+  m_LocalPosition: {x: 21.217045, y: -3.2155333, z: 53.66227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
