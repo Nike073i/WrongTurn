@@ -3,20 +3,21 @@ using Zenject;
 
 public class CityLevelManager : MonoBehaviour
 {
+    private readonly string _messageContinue = "Продолжить";
+    private readonly string _messageMenu = "В меню";
+    private readonly string _messageRepeat = "Повторить";
+    private readonly string _messageBegin = "Старт";
+
+    private readonly int buttonHeight = 30;
+    private readonly int buttonMargin = 5;
+
     private GameManager _gameManager;
-    private readonly string messageCont = "����������";
-    private readonly string messageMenu = "� ����";
-    private readonly string messageRepeat = "���������";
-    private readonly string messageBegin = "������";
 
     [Inject]
     private void Construct(GameManager gameManager)
     {
         _gameManager = gameManager;
     }
-
-    private readonly int buttonHeight = 30;
-    private readonly int buttonMargin = 5;
 
     private void OnGUI()
     {
@@ -46,7 +47,7 @@ public class CityLevelManager : MonoBehaviour
     {
         Rect button = new Rect(Screen.width / 2 - 120, Screen.height / 2, 240, 30);
 
-        if (GUI.Button(button, messageBegin) || Input.GetKeyDown(KeyCode.Return))
+        if (GUI.Button(button, _messageBegin) || Input.GetKeyDown(KeyCode.Return))
         {
             _gameManager.StartGame();
         }
@@ -57,9 +58,9 @@ public class CityLevelManager : MonoBehaviour
 
         int time = (int)_gameManager.ElapsedTime;
         Rect button = new Rect(Screen.width / 2 - 120, Screen.height / 2, 240, 30);
-        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "�������� �����:");
+        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "Затраченное время:");
         GUI.Label(new Rect(Screen.width / 2 - 10, Screen.height - 100, 20, 30), time.ToString());
-        if (GUI.Button(button, messageRepeat) || Input.GetKeyDown(KeyCode.Return))
+        if (GUI.Button(button, _messageRepeat) || Input.GetKeyDown(KeyCode.Return))
         {
             //GameManager.GameSceneLoader.LoadLastLevel();
         }
@@ -68,7 +69,7 @@ public class CityLevelManager : MonoBehaviour
     private void GameProcessMenuRender()
     {
         int time = (int)_gameManager.ElapsedTime;
-        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "���� �����");
+        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "Текущее время:");
         GUI.Label(new Rect(Screen.width / 2 - 10, Screen.height - 100, 20, 30), time.ToString());
     }
 
@@ -78,12 +79,12 @@ public class CityLevelManager : MonoBehaviour
         Rect buttonCont = new Rect(Screen.width / 2 - 120, Screen.height / 2, 240, 30);
         Rect buttonMenu = new Rect(Screen.width / 2 - 120, (Screen.height / 2) + buttonHeight + buttonMargin, 240, 30);
 
-        if (GUI.Button(buttonCont, messageCont))
+        if (GUI.Button(buttonCont, _messageContinue))
         {
             _gameManager.ContinueGame();
             return;
         }
-        if (GUI.Button(buttonMenu, messageMenu))
+        if (GUI.Button(buttonMenu, _messageMenu))
         {
             _gameManager.MainMenu();
             return;
