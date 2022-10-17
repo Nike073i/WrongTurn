@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader
@@ -8,12 +7,12 @@ public class SceneLoader
     public static int FirstLevelIndex = 2;
     public static int LastLevelIndex = 3;
 
-    public void LoadFirstLevel()
+    public void LoadSandLevel()
     {
         LoadScene(FirstLevelIndex);
     }
 
-    public void LoadLastLevel()
+    public void LoadCityLevel()
     {
         LoadScene(LastLevelIndex);
     }
@@ -28,13 +27,8 @@ public class SceneLoader
         LoadScene(PreloadSceneIndex);
     }
 
-    private void LoadScene(int index)
+    public void LoadScene(int index)
     {
         SceneManager.LoadScene(index);
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
     }
 }

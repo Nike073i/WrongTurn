@@ -84,7 +84,7 @@ public class SandLevelManager : MonoBehaviour
 
         if (GUI.Button(buttonCont, messageCont))
         {
-            _gameManager.ContinueGame();
+            _gameManager.ResumeGame();
             return;
         }
         if (GUI.Button(buttonMenu, messageMenu))

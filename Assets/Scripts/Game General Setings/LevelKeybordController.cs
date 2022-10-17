@@ -26,7 +26,7 @@ public class LevelKeybordController : MonoBehaviour
                 else
                 {
                     Cursor.visible = false;
-                    _gameManager.ContinueGame();
+                    _gameManager.ResumeGame();
                 }
             }
         }

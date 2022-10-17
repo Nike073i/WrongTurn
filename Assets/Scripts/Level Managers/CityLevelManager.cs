@@ -84,7 +84,7 @@ public class CityLevelManager : MonoBehaviour
 
         if (GUI.Button(buttonCont, _messageContinue))
         {
-            _gameManager.ContinueGame();
+            _gameManager.ResumeGame();
             return;
         }
         if (GUI.Button(buttonMenu, _messageMenu))

@@ -1,16 +1,23 @@
 using UnityEngine;
+using Zenject;
 
 public class PreloadSceneManager : MonoBehaviour
 {
-    public SceneLoader GameSceneLoader;
+    private GameManager _gameManager;
+
+    [Inject]
+    private void Construct(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
+
     private void Start()
     {
-        Cursor.visible = false;
-        Invoke("LoadMainMenu", 3f);
+        Invoke(nameof(LoadMainMenu), 3f);
     }
 
     private void LoadMainMenu()
     {
-        GameSceneLoader.LoadMainMenu();
+        _gameManager.LoadMainMenu();
     }
 }

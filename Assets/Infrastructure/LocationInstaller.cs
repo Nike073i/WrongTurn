@@ -13,7 +13,6 @@ public class LocationInstaller : MonoInstaller
     [SerializeField]
     private Transform _finishPoint;
 
-
     public override void InstallBindings()
     {
         BindPlayer();

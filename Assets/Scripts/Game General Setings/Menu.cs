@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 [System.Serializable]
 public class MenuItem
@@ -16,10 +17,15 @@ public class Menu : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public MenuItem[] MenuItems;
-    public SceneLoader GameSceneLoader;
 
-    [Header("Set Dynamically")]
+    private GameManager _gameManager;
     private int _selectedItemIndex = -1;
+
+    [Inject]
+    private void Construct(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
 
     private void Start()
     {
@@ -46,7 +52,7 @@ public class Menu : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            InvokeCommand(_selectedItemIndex);
+            Invoke(MenuItems[_selectedItemIndex].Command, 0f);
             return;
         }
     }
@@ -78,19 +84,6 @@ public class Menu : MonoBehaviour
         return _selectedItemIndex - 1 >= 0 ? _selectedItemIndex - 1 : MenuItems.Length - 1;
     }
 
-    private void InvokeCommand(int menuIndex)
-    {
-        if (menuIndex < 0 || menuIndex >= MenuItems.Length)
-        {
-            return;
-        }
-        MenuItem curItem = MenuItems[menuIndex];
-        if (!string.IsNullOrEmpty(curItem.Command))
-        {
-            //GameSceneLoader.Invoke(curItem.Command, 0f);
-        }
-    }
-
     private void SelectPrevMenuItem()
     {
         SelectMenuItem(GetPrevItemIndex());
@@ -98,5 +91,15 @@ public class Menu : MonoBehaviour
     private void SelectNextMenuItem()
     {
         SelectMenuItem(GetNextItemIndex());
+    }
+
+    private void StartGame()
+    {
+        _gameManager.LoadCityLevel();
+    }
+
+    private void ExitGame()
+    {
+        _gameManager.ExitGame();
     }
 }
