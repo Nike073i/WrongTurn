@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PreloadSceneManager : MonoBehaviour
 {
-    public GameSceneLoader GameSceneLoader;
+    public SceneLoader GameSceneLoader;
     private void Start()
     {
         Cursor.visible = false;

@@ -1,26 +1,32 @@
 using UnityEngine;
+using Zenject;
 
 public class LevelKeybordController : MonoBehaviour
 {
-    [Header("Set in Inspector")]
-    public GameManager GameManager;
+    private GameManager _gameManager;
+
+    [Inject]
+    private void Construct(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameManager.Running)
+            if (_gameManager.Running)
             {
-                if (!GameManager.Paused)
+                if (!_gameManager.Paused)
                 {
                     Cursor.visible = true;
-                    GameManager.PauseGame();
+                    _gameManager.PauseGame();
                     return;
                 }
-                if (GameManager.Paused)
+                if (_gameManager.Paused)
                 {
                     Cursor.visible = false;
-                    GameManager.ContinueGame();
+                    _gameManager.ContinueGame();
                 }
             }
         }

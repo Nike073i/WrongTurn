@@ -16,7 +16,7 @@ public class Menu : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public MenuItem[] MenuItems;
-    public GameSceneLoader GameSceneLoader;
+    public SceneLoader GameSceneLoader;
 
     [Header("Set Dynamically")]
     private int _selectedItemIndex = -1;
@@ -87,7 +87,7 @@ public class Menu : MonoBehaviour
         MenuItem curItem = MenuItems[menuIndex];
         if (!string.IsNullOrEmpty(curItem.Command))
         {
-            GameSceneLoader.Invoke(curItem.Command, 0f);
+            //GameSceneLoader.Invoke(curItem.Command, 0f);
         }
     }
 

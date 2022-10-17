@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class SandLevelManager : MonoBehaviour
 {
-    private readonly string messageCont = "Продолжить";
-    private readonly string messageMenu = "В меню";
-    private readonly string messageNext = "Перейти к следующему уровню";
-    private readonly string messageBegin = "Начать";
+    private readonly string messageCont = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+    private readonly string messageMenu = "пїЅ пїЅпїЅпїЅпїЅ";
+    private readonly string messageNext = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+    private readonly string messageBegin = "пїЅпїЅпїЅпїЅпїЅпїЅ";
 
     private readonly int buttonHeight = 30;
     private readonly int buttonMargin = 5;
@@ -51,18 +51,18 @@ public class SandLevelManager : MonoBehaviour
         ;
         int time = (int)GameManager.ElapsedTime;
         Rect button = new Rect(Screen.width / 2 - 120, Screen.height / 2, 240, 30);
-        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "Итоговое время:");
+        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ:");
         GUI.Label(new Rect(Screen.width / 2 - 10, Screen.height - 100, 20, 30), time.ToString());
         if (GUI.Button(button, messageNext) || Input.GetKeyDown(KeyCode.Return))
         {
-            GameManager.GameSceneLoader.LoadLastLevel();
+            //GameManager.GameSceneLoader.LoadLastLevel();
         }
     }
 
     private void GameProcessMenuRender()
     {
         int time = (int)GameManager.ElapsedTime;
-        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "Ваше время");
+        GUI.Box(new Rect(Screen.width / 2 - 65, Screen.height - 115, 130, 40), "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
         GUI.Label(new Rect(Screen.width / 2 - 10, Screen.height - 100, 20, 30), time.ToString());
     }
 

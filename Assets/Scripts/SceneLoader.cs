@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSceneLoader : MonoBehaviour
+public class SceneLoader
 {
     public static int PreloadSceneIndex = 0;
     public static int MainMenuSceneIndex = 1;
