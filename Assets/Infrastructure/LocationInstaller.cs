@@ -15,16 +15,13 @@ public class LocationInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        BindPlayer();
+        InstantiatePlayer();
         BindFinishPoint();
     }
 
-    private void BindPlayer()
+    private void InstantiatePlayer()
     {
-        var playerController = Container.InstantiatePrefabForComponent<PlayerController>(_playerPrefab, _playerStartPoint);
-        Container.Bind(typeof(PlayerController))
-            .FromInstance(playerController)
-            .AsSingle();
+        Container.InstantiatePrefab(_playerPrefab, _playerStartPoint);
     }
 
     private void BindFinishPoint()
