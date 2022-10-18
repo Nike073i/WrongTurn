@@ -13,15 +13,24 @@ public class LocationInstaller : MonoInstaller
     [SerializeField]
     private Transform _finishPoint;
 
+    [SerializeField]
+    private GameObject _locationUiPrefab;
+
     public override void InstallBindings()
     {
         InstantiatePlayer();
         BindFinishPoint();
+        InstantiateUi();
     }
 
     private void InstantiatePlayer()
     {
         Container.InstantiatePrefab(_playerPrefab, _playerStartPoint);
+    }
+
+    private void InstantiateUi()
+    {
+        Container.InstantiatePrefab(_locationUiPrefab);
     }
 
     private void BindFinishPoint()

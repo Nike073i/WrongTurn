@@ -1,20 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
-[System.Serializable]
-public class MenuItem
+public class MainMenu : MonoBehaviour
 {
-    public Sprite SpriteGeneral;
-    public Sprite SpriteHover;
-    public Image ButtonImage;
-    public string CommandName;
-}
+    [SerializeField]
+    public MenuItem[] _menuItems;
 
-public class Menu : MonoBehaviour
-{
-    public MenuItem[] MenuItems;
     private int _selectedItemIndex = -1;
+
     private GameManager _gameManager;
 
     [Inject]
@@ -43,34 +36,34 @@ public class Menu : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Invoke(MenuItems[_selectedItemIndex].CommandName, 0f);
+            Invoke(_menuItems[_selectedItemIndex].CommandName, 0f);
             return;
         }
     }
 
     private void SelectMenuItem(int menuItemIndex)
     {
-        if (menuItemIndex < 0 || menuItemIndex >= MenuItems.Length)
+        if (menuItemIndex < 0 || menuItemIndex >= _menuItems.Length)
             return;
 
         if (_selectedItemIndex > -1)
         {
-            MenuItem curItem = MenuItems[_selectedItemIndex];
+            MenuItem curItem = _menuItems[_selectedItemIndex];
             curItem.ButtonImage.sprite = curItem.SpriteGeneral;
         }
         _selectedItemIndex = menuItemIndex;
-        MenuItem newItem = MenuItems[_selectedItemIndex];
+        MenuItem newItem = _menuItems[_selectedItemIndex];
         newItem.ButtonImage.sprite = newItem.SpriteHover;
     }
 
     private int GetNextItemIndex()
     {
-        return _selectedItemIndex + 1 < MenuItems.Length ? _selectedItemIndex + 1 : 0;
+        return _selectedItemIndex + 1 < _menuItems.Length ? _selectedItemIndex + 1 : 0;
     }
 
     private int GetPrevItemIndex()
     {
-        return _selectedItemIndex - 1 >= 0 ? _selectedItemIndex - 1 : MenuItems.Length - 1;
+        return _selectedItemIndex - 1 >= 0 ? _selectedItemIndex - 1 : _menuItems.Length - 1;
     }
 
     private void SelectPrevMenuItem()
@@ -84,7 +77,7 @@ public class Menu : MonoBehaviour
 
     private void StartGame()
     {
-        _gameManager.LoadCityLevel();
+        _gameManager.LoadSandLevel();
     }
 
     private void ExitGame()

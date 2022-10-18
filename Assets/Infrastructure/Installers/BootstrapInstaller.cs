@@ -12,12 +12,12 @@ public class BootstrapInstaller : MonoInstaller
     private void BindSceneLoader()
     {
         Container.Bind(typeof(SceneLoader))
-                .AsTransient();
+            .AsTransient();
     }
 
     private void BindGameManager()
     {
-        var gameManager = Container.Bind(typeof(GameManager))
+        Container.Bind(typeof(GameManager))
             .FromNewComponentOnNewGameObject()
             .AsSingle();
     }

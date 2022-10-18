@@ -4,20 +4,35 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
-    private SceneLoader _sceneLoader;
-    private PauseService _pauseService;
-
     public float ElapsedTime { get; private set; }
+
     public GameState CurrentState { get; private set; } = GameState.Pregame;
     public Action<GameState, GameState> OnGameStateUpdated;
+
     public Scene CurrentScene { get; private set; }
     public Action<Scene> OnGameLevelChanged;
+
+    private SceneLoader _sceneLoader;
+    private PauseService _pauseService;
 
     [Inject]
     private void Construct(SceneLoader sceneLoader, PauseService pauseService)
     {
         _sceneLoader = sceneLoader;
         _pauseService = pauseService;
+    }
+
+    private void Update()
+    {
+        if (CurrentState == GameState.Running)
+        {
+            ElapsedTime += Time.deltaTime;
+        }
+    }
+
+    public void ReloadLevel()
+    {
+        UpdateGameLevel(CurrentScene);
     }
 
     public void LoadCityLevel()
@@ -35,7 +50,15 @@ public class GameManager : MonoBehaviour
         UpdateGameLevel(Scene.MainMenu);
     }
 
-    public void StartGame()
+    public void LoadNextLevel()
+    {
+        if (CurrentScene == Scene.CityLevel)
+            UpdateGameLevel(Scene.SandLevel);
+        else
+            UpdateGameLevel(Scene.CityLevel);
+    }
+
+    public void RunGame()
     {
         UpdateGameState(GameState.Running);
     }
@@ -50,22 +73,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    private void Update()
-    {
-        if (CurrentState == GameState.Running)
-        {
-            ElapsedTime += Time.deltaTime;
-        }
-    }
-
     public void PauseGame()
     {
         UpdateGameState(GameState.Paused);
-    }
-
-    public void ResumeGame()
-    {
-        UpdateGameState(GameState.Running);
     }
 
     public void UpdateGameState(GameState newState)
@@ -100,25 +110,21 @@ public class GameManager : MonoBehaviour
 
     private void HandleRunningState()
     {
-        Cursor.visible = false;
         _pauseService.Resume();
     }
 
     private void HandleFinishedState()
     {
-        Cursor.visible = true;
         _pauseService.SetPause();
     }
 
     private void HandlePauseState()
     {
-        Cursor.visible = true;
         _pauseService.SetPause();
     }
 
     private void HandlePregameState()
     {
-        Cursor.visible = true;
         _pauseService.SetPause();
         ElapsedTime = 0;
     }
