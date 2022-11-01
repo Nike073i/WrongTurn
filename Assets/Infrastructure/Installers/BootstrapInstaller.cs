@@ -1,3 +1,4 @@
+using Assets.Scripts.Game;
 using Zenject;
 
 public class BootstrapInstaller : MonoInstaller
@@ -11,13 +12,12 @@ public class BootstrapInstaller : MonoInstaller
     private void BindSceneLoader()
     {
         Container.Bind(typeof(SceneLoader))
-            .AsTransient();
+            .AsSingle();
     }
 
     private void BindGameManager()
     {
         Container.Bind(typeof(GameManager))
-            .FromNewComponentOnNewGameObject()
             .AsSingle();
     }
 }

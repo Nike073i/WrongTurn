@@ -5,7 +5,8 @@ public abstract class GameProcessMenu : MonoBehaviour
     [SerializeField]
     protected GameObject _menuUi;
 
-    protected GameManager _gameManager;
+    protected RaceManager _raceManager;
+    protected SceneLoader _sceneLoader;
 
     protected void Show()
     {

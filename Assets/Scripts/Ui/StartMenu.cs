@@ -3,11 +3,12 @@ using Zenject;
 public class StartMenu : GameProcessMenu
 {
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(RaceManager raceManager, SceneLoader sceneLoader)
     {
-        _gameManager = gameManager;
-        _gameManager.OnGameStateUpdated += OnGameStateUpdated;
-        if (_gameManager.CurrentState == GameState.Pregame)
+        _raceManager = raceManager;
+        _sceneLoader = sceneLoader;
+        _raceManager.OnGameStateUpdated += OnGameStateUpdated;
+        if (_raceManager.CurrentState == GameState.Pregame)
             Show();
     }
 
@@ -19,18 +20,18 @@ public class StartMenu : GameProcessMenu
 
     public void OnDestroy()
     {
-        _gameManager.OnGameStateUpdated -= OnGameStateUpdated;
+        _raceManager.OnGameStateUpdated -= OnGameStateUpdated;
     }
 
     public void OnStartButtonClick()
     {
-        _gameManager.RunGame();
+        _raceManager.RunGame();
         Close();
     }
 
     public void OnMainMenuButtonClick()
     {
-        _gameManager.LoadMainMenu();
+        _sceneLoader.LoadMainMenu();
         Close();
     }
 }

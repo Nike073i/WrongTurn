@@ -3,10 +3,11 @@ using Zenject;
 public class FinishMenu : GameProcessMenu
 {
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(RaceManager raceManager, SceneLoader sceneLoader)
     {
-        _gameManager = gameManager;
-        _gameManager.OnGameStateUpdated += OnGameStateUpdated;
+        _raceManager = raceManager;
+        _sceneLoader = sceneLoader;
+        _raceManager.OnGameStateUpdated += OnGameStateUpdated;
     }
 
     private void OnGameStateUpdated(GameState prevState, GameState newState)
@@ -17,24 +18,24 @@ public class FinishMenu : GameProcessMenu
 
     public void OnDestroy()
     {
-        _gameManager.OnGameStateUpdated -= OnGameStateUpdated;
+        _raceManager.OnGameStateUpdated -= OnGameStateUpdated;
     }
 
     public void OnNextLevelButtonClick()
     {
-        _gameManager.LoadNextLevel();
+        _sceneLoader.LoadNextLevel();
         Close();
     }
 
     public void OnRestartButtonClick()
     {
-        _gameManager.ReloadLevel();
+        _sceneLoader.ReloadLevel();
         Close();
     }
 
     public void OnMainMenuButtonClick()
     {
-        _gameManager.LoadMainMenu();
+        _sceneLoader.LoadMainMenu();
         Close();
     }
 }

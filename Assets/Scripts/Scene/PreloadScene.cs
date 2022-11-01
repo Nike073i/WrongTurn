@@ -3,12 +3,12 @@ using Zenject;
 
 public class PreloadScene : MonoBehaviour
 {
-    private GameManager _gameManager;
+    private SceneLoader _sceneLoader;
 
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(SceneLoader sceneLoader)
     {
-        _gameManager = gameManager;
+        _sceneLoader = sceneLoader;
     }
 
     private void Start()
@@ -18,6 +18,6 @@ public class PreloadScene : MonoBehaviour
 
     private void LoadMainMenu()
     {
-        _gameManager.LoadMainMenu();
+        _sceneLoader.LoadMainMenu();
     }
 }

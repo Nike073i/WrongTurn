@@ -4,16 +4,17 @@ using Zenject;
 public class PauseMenu : GameProcessMenu
 {
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(SceneLoader sceneLoader, RaceManager raceManager)
     {
-        _gameManager = gameManager;
+        _sceneLoader = sceneLoader;
+        _raceManager = raceManager;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            switch (_gameManager.CurrentState)
+            switch (_raceManager.CurrentState)
             {
                 case GameState.Paused:
                     ResumeGame();
@@ -27,13 +28,13 @@ public class PauseMenu : GameProcessMenu
 
     private void ResumeGame()
     {
-        _gameManager.RunGame();
+        _raceManager.RunGame();
         Close();
     }
 
     private void PauseGame()
     {
-        _gameManager.PauseGame();
+        _raceManager.PauseGame();
         Show();
     }
 
@@ -44,13 +45,13 @@ public class PauseMenu : GameProcessMenu
 
     public void OnRestartButtonClick()
     {
-        _gameManager.ReloadLevel();
+        _sceneLoader.ReloadLevel();
         Close();
     }
 
     public void OnMainMenuButtonClick()
     {
-        _gameManager.LoadMainMenu();
+        _sceneLoader.LoadMainMenu();
         Close();
     }
 }

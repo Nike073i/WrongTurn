@@ -3,16 +3,16 @@ using Zenject;
 
 public class FinishZone : MonoBehaviour
 {
-    private GameManager _gameManager;
+    private RaceManager _raceManager;
 
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(RaceManager raceManager)
     {
-        _gameManager = gameManager;
+        _raceManager = raceManager;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        _gameManager.FinishGame();
+        _raceManager.FinishGame();
     }
 }

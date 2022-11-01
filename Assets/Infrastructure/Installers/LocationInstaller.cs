@@ -19,6 +19,7 @@ public class LocationInstaller : MonoInstaller
     public override void InstallBindings()
     {
         BindPauseService();
+        BindRaceManager();
         InstantiatePlayer();
         BindFinishPoint();
         InstantiateUi();
@@ -45,6 +46,13 @@ public class LocationInstaller : MonoInstaller
     private void BindPauseService()
     {
         Container.Bind(typeof(PauseService))
-            .AsTransient();
+            .AsSingle();
+    }
+
+    private void BindRaceManager()
+    {
+        Container.Bind(typeof(RaceManager))
+            .FromNewComponentOnNewGameObject()
+            .AsSingle();
     }
 }

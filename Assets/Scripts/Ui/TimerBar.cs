@@ -12,14 +12,14 @@ public class TimerBar : MonoBehaviour
 
     private readonly string _timeFormat = "F2";
 
-    private GameManager _gameManager;
+    private RaceManager _raceManager;
 
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(RaceManager raceManager)
     {
-        _gameManager = gameManager;
+        _raceManager = raceManager;
         _timeBarUi.SetActive(false);
-        _gameManager.OnGameStateUpdated += OnGameStateUpdated;
+        _raceManager.OnGameStateUpdated += OnGameStateUpdated;
     }
 
     private void OnGameStateUpdated(GameState prevState, GameState newState)
@@ -32,11 +32,11 @@ public class TimerBar : MonoBehaviour
 
     private void OnDestroy()
     {
-        _gameManager.OnGameStateUpdated -= OnGameStateUpdated;
+        _raceManager.OnGameStateUpdated -= OnGameStateUpdated;
     }
 
     private void Update()
     {
-        _timeText.text = _gameManager.ElapsedTime.ToString(_timeFormat);
+        _timeText.text = _raceManager.ElapsedTime.ToString(_timeFormat);
     }
 }

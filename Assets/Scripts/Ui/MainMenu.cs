@@ -1,3 +1,4 @@
+using Assets.Scripts.Game;
 using UnityEngine;
 using Zenject;
 
@@ -9,11 +10,13 @@ public class MainMenu : MonoBehaviour
     private int _selectedItemIndex = -1;
 
     private GameManager _gameManager;
+    private SceneLoader _sceneLoader;
 
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(GameManager gameManager, SceneLoader sceneLoader)
     {
         _gameManager = gameManager;
+        _sceneLoader = sceneLoader;
     }
 
     private void Start()
@@ -77,7 +80,7 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
-        _gameManager.LoadSandLevel();
+        _sceneLoader.LoadSandLevel();
     }
 
     private void ExitGame()
