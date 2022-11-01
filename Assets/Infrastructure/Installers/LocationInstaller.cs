@@ -18,6 +18,7 @@ public class LocationInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
+        BindPauseService();
         InstantiatePlayer();
         BindFinishPoint();
         InstantiateUi();
@@ -39,5 +40,11 @@ public class LocationInstaller : MonoInstaller
         Container.Bind(typeof(FinishZone))
             .FromInstance(finishZone)
             .AsSingle();
+    }
+
+    private void BindPauseService()
+    {
+        Container.Bind(typeof(PauseService))
+            .AsTransient();
     }
 }

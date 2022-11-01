@@ -5,7 +5,6 @@ public class BootstrapInstaller : MonoInstaller
     public override void InstallBindings()
     {
         BindSceneLoader();
-        BindPauseService();
         BindGameManager();
     }
 
@@ -20,11 +19,5 @@ public class BootstrapInstaller : MonoInstaller
         Container.Bind(typeof(GameManager))
             .FromNewComponentOnNewGameObject()
             .AsSingle();
-    }
-
-    private void BindPauseService()
-    {
-        Container.Bind(typeof(PauseService))
-            .AsTransient();
     }
 }
