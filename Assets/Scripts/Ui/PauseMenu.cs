@@ -1,13 +1,23 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class PauseMenu : GameProcessMenu
 {
+    [SerializeField]
+    private Button _resumeButton;
+    [SerializeField]
+    private Button _restartButton;
+    [SerializeField]
+    private Button _mainMenuButton;
+
     [Inject]
     private void Construct(SceneLoader sceneLoader, RaceManager raceManager)
     {
         _sceneLoader = sceneLoader;
         _raceManager = raceManager;
+
+        AddButtonListeners();
     }
 
     private void Update()
@@ -26,6 +36,25 @@ public class PauseMenu : GameProcessMenu
         }
     }
 
+    private void OnDestroy()
+    {
+        RemoveButtonListeners();
+    }
+
+    private void AddButtonListeners()
+    {
+        _resumeButton.onClick.AddListener(OnResumeButtonClick);
+        _restartButton.onClick.AddListener(OnRestartButtonClick);
+        _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
+    }
+
+    private void RemoveButtonListeners()
+    {
+        _resumeButton.onClick.RemoveListener(OnResumeButtonClick);
+        _restartButton.onClick.RemoveListener(OnRestartButtonClick);
+        _mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClick);
+    }
+
     private void ResumeGame()
     {
         _raceManager.RunGame();
@@ -38,18 +67,18 @@ public class PauseMenu : GameProcessMenu
         Show();
     }
 
-    public void OnResumeButtonClick()
+    private void OnResumeButtonClick()
     {
         ResumeGame();
     }
 
-    public void OnRestartButtonClick()
+    private void OnRestartButtonClick()
     {
         _sceneLoader.ReloadLevel();
         Close();
     }
 
-    public void OnMainMenuButtonClick()
+    private void OnMainMenuButtonClick()
     {
         _sceneLoader.LoadMainMenu();
         Close();
