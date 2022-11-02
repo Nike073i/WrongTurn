@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class RaceManager : MonoBehaviour
+public class RaceManager : ITickable, IDisposable
 {
     public float ElapsedTime { get; private set; }
 
@@ -22,7 +22,7 @@ public class RaceManager : MonoBehaviour
         UpdateGameState(GameState.Pregame);
     }
 
-    private void Update()
+    public void Tick()
     {
         if (CurrentState == GameState.Running)
         {
@@ -30,7 +30,7 @@ public class RaceManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void Dispose()
     {
         _sceneLoader.OnGameLevelChanged -= OnGameLevelChanged;
     }

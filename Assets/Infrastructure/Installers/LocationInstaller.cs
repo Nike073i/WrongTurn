@@ -51,8 +51,7 @@ public class LocationInstaller : MonoInstaller
 
     private void BindRaceManager()
     {
-        Container.Bind(typeof(RaceManager))
-            .FromNewComponentOnNewGameObject()
+        Container.BindInterfacesAndSelfTo(typeof(RaceManager))
             .AsSingle();
     }
 }
