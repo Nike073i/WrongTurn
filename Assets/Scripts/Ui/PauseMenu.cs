@@ -1,19 +1,30 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class PauseMenu : GameProcessMenu
 {
+    [SerializeField]
+    private Button _resumeButton;
+    [SerializeField]
+    private Button _restartButton;
+    [SerializeField]
+    private Button _mainMenuButton;
+
     [Inject]
-    private void Construct(GameManager gameManager)
+    private void Construct(SceneLoader sceneLoader, RaceManager raceManager)
     {
-        _gameManager = gameManager;
+        _sceneLoader = sceneLoader;
+        _raceManager = raceManager;
+
+        AddButtonListeners();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            switch (_gameManager.CurrentState)
+            switch (_raceManager.CurrentState)
             {
                 case GameState.Paused:
                     ResumeGame();
@@ -25,32 +36,51 @@ public class PauseMenu : GameProcessMenu
         }
     }
 
+    private void OnDestroy()
+    {
+        RemoveButtonListeners();
+    }
+
+    private void AddButtonListeners()
+    {
+        _resumeButton.onClick.AddListener(OnResumeButtonClick);
+        _restartButton.onClick.AddListener(OnRestartButtonClick);
+        _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
+    }
+
+    private void RemoveButtonListeners()
+    {
+        _resumeButton.onClick.RemoveListener(OnResumeButtonClick);
+        _restartButton.onClick.RemoveListener(OnRestartButtonClick);
+        _mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClick);
+    }
+
     private void ResumeGame()
     {
-        _gameManager.RunGame();
+        _raceManager.RunGame();
         Close();
     }
 
     private void PauseGame()
     {
-        _gameManager.PauseGame();
+        _raceManager.PauseGame();
         Show();
     }
 
-    public void OnResumeButtonClick()
+    private void OnResumeButtonClick()
     {
         ResumeGame();
     }
 
-    public void OnRestartButtonClick()
+    private void OnRestartButtonClick()
     {
-        _gameManager.ReloadLevel();
+        _sceneLoader.ReloadLevel();
         Close();
     }
 
-    public void OnMainMenuButtonClick()
+    private void OnMainMenuButtonClick()
     {
-        _gameManager.LoadMainMenu();
+        _sceneLoader.LoadMainMenu();
         Close();
     }
 }

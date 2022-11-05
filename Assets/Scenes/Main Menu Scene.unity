@@ -503,19 +503,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1036576551}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1398248842}
-        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
-        m_MethodName: SendMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: SelectNextMenuItem
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1079647681
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,19 +623,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1079647683}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1398248842}
-        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
-        m_MethodName: SendMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: SelectPrevMenuItem
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1398248841
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,23 +653,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28124fcc76d40349a0d5c8550583755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuItems:
-  - SpriteGeneral: {fileID: 4196839423909144710, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+  _startGameMenuItem:
+    SpriteGeneral: {fileID: 4196839423909144710, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: -8519022737440003418, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonImage: {fileID: 1427196846}
-    CommandName: StartGame
-  - SpriteGeneral: {fileID: 3862412840237998905, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    SpriteHover: {fileID: 5681577502782440470, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonImage: {fileID: 317232962}
-    CommandName: 
-  - SpriteGeneral: {fileID: 2470984068398848082, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    SpriteHover: {fileID: -4722469139264870737, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonImage: {fileID: 1455124025}
-    CommandName: 
-  - SpriteGeneral: {fileID: -2978173362232131241, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+    Button: {fileID: 1427196848}
+  _exitGameMenuItem:
+    SpriteGeneral: {fileID: -2978173362232131241, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: 978498083462473504, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    ButtonImage: {fileID: 1769528610}
-    CommandName: ExitGame
+    Button: {fileID: 1769528612}
+  _downButton: {fileID: 1036576553}
+  _upButton: {fileID: 1079647685}
 --- !u!4 &1398248843
 Transform:
   m_ObjectHideFlags: 0
@@ -791,7 +760,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427196844}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -813,7 +782,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -8519022737440003418, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+    m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -827,19 +796,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1427196846}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 14a6a832b3914e643949ba6afd19f526, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
+      m_Calls: []
 --- !u!1 &1455124023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1000,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769528608}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1065,7 +1022,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 978498083462473504, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+    m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}

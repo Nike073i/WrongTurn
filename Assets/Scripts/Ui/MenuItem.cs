@@ -6,6 +6,5 @@ public class MenuItem
 {
     public Sprite SpriteGeneral;
     public Sprite SpriteHover;
-    public Image ButtonImage;
-    public string CommandName;
+    public Button Button;
 }
