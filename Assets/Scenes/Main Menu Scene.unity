@@ -661,6 +661,10 @@ MonoBehaviour:
     SpriteGeneral: {fileID: -2978173362232131241, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: 978498083462473504, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     Button: {fileID: 1769528612}
+  _testMenuItem:
+    SpriteGeneral: {fileID: 2470984068398848082, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+    SpriteHover: {fileID: -4722469139264870737, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+    Button: {fileID: 1455124027}
   _downButton: {fileID: 1036576553}
   _upButton: {fileID: 1079647685}
 --- !u!4 &1398248843
