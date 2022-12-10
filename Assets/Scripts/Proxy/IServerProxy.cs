@@ -7,7 +7,7 @@ using WrongTurn.StateManagement.Actions.Base;
 public interface IServerProxy
 {
     Task<PlayerState?> GetByPlayerId(Guid playerId);
-    Task<PlayerState> SaveState(Guid playerId, PlayerState playerState, IEnumerable<PlayerAction> actions);
+    Task<PlayerState> SaveState(Guid playerId, PlayerState playerState, IEnumerable<IPlayerAction> actions);
     Task<bool> UnlockAchievement(Guid playerId, string achievementId);
     Task<Guid?> CreatePlayer();
 }

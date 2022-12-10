@@ -42,7 +42,7 @@ public class ServerProxy : IServerProxy
         return JsonConvert.DeserializeObject<PlayerState>(jsonPlayerState);
     }
 
-    public async Task<PlayerState?> SaveState(Guid playerId, PlayerState playerState, IEnumerable<PlayerAction> actions)
+    public async Task<PlayerState?> SaveState(Guid playerId, PlayerState playerState, IEnumerable<IPlayerAction> actions)
     {
         var url = _serverUrl + _playerControllerPath + _saveStatePath;
         var client = new HttpClient();
