@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,23 +13,11 @@ public class ServerProxy : IServerProxy
     private readonly string _serverUrl;
     private readonly string _playerControllerPath = "/api/PlayerState/";
     private readonly string _saveStatePath = "save";
-    private readonly string _createPlayerPath = "create";
     private readonly string _unlockAchievementPath = "unlock";
 
     public ServerProxy(string serverUrl)
     {
         _serverUrl = serverUrl;
-    }
-
-    public async Task<Guid?> CreatePlayer()
-    {
-        var url = _serverUrl + _playerControllerPath + _createPlayerPath;
-        var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, url);
-        var response = await client.SendAsync(request);
-        if (!response.IsSuccessStatusCode) return null;
-        var jsonPlayerState = await response.Content.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<Guid>(jsonPlayerState);
     }
 
     public async Task<PlayerState?> GetByPlayerId(Guid playerId)
@@ -39,7 +28,8 @@ public class ServerProxy : IServerProxy
         var response = await client.SendAsync(request);
         if (!response.IsSuccessStatusCode) return null;
         var jsonPlayerState = await response.Content.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<PlayerState>(jsonPlayerState);
+        var jObject = JObject.Parse(jsonPlayerState);
+        return jObject.ToObject<PlayerState>();
     }
 
     public async Task<PlayerState?> SaveState(Guid playerId, PlayerState playerState, IEnumerable<IPlayerAction> actions)
@@ -52,12 +42,13 @@ public class ServerProxy : IServerProxy
             PlayerState = playerState,
             Actions = actions
         };
-        var json = JsonConvert.SerializeObject(model);
+        var json = JObject.FromObject(model).ToString();
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var response = await client.PostAsync(url, content);
         if (!response.IsSuccessStatusCode) return null;
         var jsonPlayerState = await response.Content.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<PlayerState>(jsonPlayerState);
+        var jObject = JObject.Parse(jsonPlayerState);
+        return jObject.ToObject<PlayerState>();
     }
 
     public async Task<bool> UnlockAchievement(Guid playerId, string achievementId)

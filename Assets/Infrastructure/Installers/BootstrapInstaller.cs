@@ -8,7 +8,6 @@ public class BootstrapInstaller : MonoInstaller
     public override void InstallBindings()
     {
         BindSceneLoader();
-        BindLocalDataStore();
         BindGameManager();
         BindServerProxy();
         BindPlayerProfile();
@@ -24,12 +23,6 @@ public class BootstrapInstaller : MonoInstaller
     {
         Container.Bind(typeof(PlayerProfile))
             .AsSingle();
-    }
-
-    private void BindLocalDataStore()
-    {
-        Container.Bind(typeof(LocalDataStore))
-            .AsTransient();
     }
 
     private void BindServerProxy()
