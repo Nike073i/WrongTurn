@@ -38,6 +38,12 @@ TextureImporter:
   - first:
       213: 978498083462473504
     second: menu_exit_button_selected
+  - first:
+      213: -1371322067466134402
+    second: menu_sync_button
+  - first:
+      213: 5659987997100939335
+    second: menu_sync_buttin_selected
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -374,6 +380,48 @@ TextureImporter:
       bones: []
       spriteID: 0276e2692d2549d00800000000000000
       internalID: 978498083462473504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menu_sync_button
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 527
+        width: 379
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7cd60068d518fce0800000000000000
+      internalID: -1371322067466134402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menu_sync_buttin_selected
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 454
+        width: 373
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7481d2078115c8e40800000000000000
+      internalID: 5659987997100939335
       vertices: []
       indices: 
       edges: []

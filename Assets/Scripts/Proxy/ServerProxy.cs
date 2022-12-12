@@ -42,13 +42,13 @@ public class ServerProxy : IServerProxy
             PlayerState = playerState,
             Actions = actions
         };
-        var json = JObject.FromObject(model).ToString();
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var requestBody = JObject.FromObject(model).ToString();
+        var content = new StringContent(requestBody, Encoding.UTF8, "application/json");
         var response = await client.PostAsync(url, content);
         if (!response.IsSuccessStatusCode) return null;
         var jsonPlayerState = await response.Content.ReadAsStringAsync();
-        var jObject = JObject.Parse(jsonPlayerState);
-        return jObject.ToObject<PlayerState>();
+        if (string.IsNullOrEmpty(jsonPlayerState)) return null;
+        return JObject.Parse(jsonPlayerState).ToObject<PlayerState>();
     }
 
     public async Task<bool> UnlockAchievement(Guid playerId, string achievementId)

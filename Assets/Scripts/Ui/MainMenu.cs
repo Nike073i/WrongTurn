@@ -11,6 +11,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private MenuItem _exitGameMenuItem;
     [SerializeField]
+    private MenuItem _syncMenuItem;
+
+    [SerializeField]
     private Button _downButton;
     [SerializeField]
     private Button _upButton;
@@ -20,12 +23,14 @@ public class MainMenu : MonoBehaviour
 
     private GameManager _gameManager;
     private SceneLoader _sceneLoader;
+    private PlayerProfile _playerProfile;
 
     [Inject]
-    private void Construct(GameManager gameManager, SceneLoader sceneLoader)
+    private void Construct(GameManager gameManager, SceneLoader sceneLoader, PlayerProfile playerProfile)
     {
         _gameManager = gameManager;
         _sceneLoader = sceneLoader;
+        _playerProfile = playerProfile;
 
         AddButtonListeners();
         InitializeMenuItemList();
@@ -61,7 +66,8 @@ public class MainMenu : MonoBehaviour
         _menuItems = new List<MenuItem>
         {
             _startGameMenuItem,
-            _exitGameMenuItem
+            _syncMenuItem,
+            _exitGameMenuItem,
         };
         SelectMenuItem(0);
     }
@@ -70,6 +76,7 @@ public class MainMenu : MonoBehaviour
     {
         _startGameMenuItem.Button.onClick.AddListener(OnStartGameButtonClick);
         _exitGameMenuItem.Button.onClick.AddListener(OnExitGameButtonClick);
+        _syncMenuItem.Button.onClick.AddListener(OnSyncButtonClick);
         _downButton.onClick.AddListener(OnDownButtonClick);
         _upButton.onClick.AddListener(OnUpButtonClick);
     }
@@ -78,8 +85,14 @@ public class MainMenu : MonoBehaviour
     {
         _startGameMenuItem.Button.onClick.RemoveListener(OnStartGameButtonClick);
         _exitGameMenuItem.Button.onClick.RemoveListener(OnExitGameButtonClick);
+        _syncMenuItem.Button.onClick.RemoveListener(OnSyncButtonClick);
         _downButton.onClick.RemoveListener(OnDownButtonClick);
         _upButton.onClick.RemoveListener(OnUpButtonClick);
+    }
+
+    private void OnSyncButtonClick()
+    {
+        var syncTask = _playerProfile.Synchronization();
     }
 
     private void OnStartGameButtonClick()

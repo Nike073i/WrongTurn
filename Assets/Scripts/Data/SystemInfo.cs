@@ -13,14 +13,10 @@ public class SystemInfo
             RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
         using RegistryKey rk = localMachineX64View.OpenSubKey(location);
         if (rk == null)
-            throw new KeyNotFoundException(
-                string.Format("Key Not Found: {0}", location));
+            throw new KeyNotFoundException(string.Format("Key Not Found: {0}", location));
 
-        Guid? machineGuid = rk.GetValue(name) as Guid?;
-        if (!machineGuid.HasValue)
-            throw new IndexOutOfRangeException(
-                string.Format("Index Not Found: {0}", name));
-
-        return machineGuid.Value;
+        var machineGuidString = rk.GetValue(name);
+        var playerGuid = new Guid(machineGuidString.ToString());
+        return playerGuid;
     }
 }

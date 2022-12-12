@@ -661,9 +661,9 @@ MonoBehaviour:
     SpriteGeneral: {fileID: -2978173362232131241, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     SpriteHover: {fileID: 978498083462473504, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     Button: {fileID: 1769528612}
-  _testMenuItem:
-    SpriteGeneral: {fileID: 2470984068398848082, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
-    SpriteHover: {fileID: -4722469139264870737, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+  _syncMenuItem:
+    SpriteGeneral: {fileID: -1371322067466134402, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+    SpriteHover: {fileID: 5659987997100939335, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     Button: {fileID: 1455124027}
   _downButton: {fileID: 1036576553}
   _upButton: {fileID: 1079647685}
@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 1455124025}
   - component: {fileID: 1455124027}
   m_Layer: 5
-  m_Name: Setting Button
+  m_Name: Sync Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -859,7 +859,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2470984068398848082, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+  m_Sprite: {fileID: -1371322067466134402, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -906,7 +906,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -4722469139264870737, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
+    m_HighlightedSprite: {fileID: 5659987997100939335, guid: 527dfc0c9ad26a44a830e67ea63d0b9b, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
